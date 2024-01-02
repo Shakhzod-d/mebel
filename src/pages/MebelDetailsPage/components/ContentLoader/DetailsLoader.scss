@@ -1,0 +1,105 @@
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.furniture-details {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  .furniture-image {
+    max-width: 700px;
+    border-radius: 8px 0 0 8px;
+    object-fit: cover;
+    height: 100%;
+  }
+
+  .details {
+    flex: 1;
+    padding: 40px;
+
+    .loader-heading {
+      height: 2.5rem;
+      width: 70%;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #eee, #ddd);
+      animation: shimmer 1.5s infinite linear;
+    }
+
+    .loader-text {
+      height: 1.6rem;
+      width: 90%;
+      margin-bottom: 30px;
+      background: linear-gradient(to right, #eee, #ddd);
+      animation: shimmer 1.5s infinite linear;
+    }
+
+    .loader-counter {
+      display: flex;
+      align-items: center;
+      height: 30px;
+      width: 180px;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #eee, #ddd);
+      animation: shimmer 1.5s infinite linear;
+
+      .loader-counter-button {
+        height: 100%;
+        width: 60px;
+        padding: 12px 0;
+        cursor: pointer;
+        background: linear-gradient(to right, #3498db, #2980b9);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        transition: background 0.3s ease;
+
+        &:disabled {
+          background: #bdc3c7;
+          cursor: not-allowed;
+        }
+      }
+
+      .loader-counter-text {
+        flex: 1;
+        height: 100%;
+        width: 100px;
+        background: linear-gradient(to right, #eee, #ddd);
+        animation: shimmer 1.5s infinite linear;
+      }
+    }
+
+    .loader-favorite-btn {
+      height: 40px;
+      width: 150px;
+      padding: 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: linear-gradient(to right, #e74c3c, #c0392b);
+      color: #fff;
+      transition: background 0.3s ease;
+
+      &.active {
+        background: linear-gradient(to right, #2ecc71, #27ae60);
+      }
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

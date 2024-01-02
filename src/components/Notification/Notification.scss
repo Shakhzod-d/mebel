@@ -1,0 +1,39 @@
+.notification {
+  position: fixed;
+  top: 6rem;
+  right: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 999; // Ensure it appears above other elements
+
+  // Your existing styles...
+
+  // Set initial position to be outside the viewport
+  transform: translateX(110%);
+  transition: transform 1s ease; // Adjust the duration and easing as needed
+
+  &.success {
+    background-color: #4caf50;
+    color: #fff;
+  }
+
+  &.error {
+    background-color: #f44336;
+    color: #fff;
+  }
+
+  &.info {
+    background-color: #2196f3;
+    color: #fff;
+  }
+
+  // Move the notification in from the right
+  &.enter {
+    transform: translateX(0%);
+  }
+
+  // Move the notification out to the left
+  &.exit {
+    transform: translateX(110%);
+  }
+}

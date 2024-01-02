@@ -1,0 +1,32 @@
+// CustomCard.scss
+.custom-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+
+  &:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-image {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .card-content {
+    padding: 16px;
+  }
+
+  .card-title {
+    margin-bottom: 8px;
+    font-size: 1.2em;
+  }
+
+  .card-info {
+    color: #666;
+  }
+}

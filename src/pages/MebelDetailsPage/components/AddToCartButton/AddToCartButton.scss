@@ -1,0 +1,43 @@
+// AddToCartButton.scss
+
+.cart-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #4caf50; /* Green color */
+  color: #fff; /* White color */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #45a049; /* Darker green color on hover */
+  }
+
+  .cart-icon {
+    margin-right: 8px;
+  }
+
+  .spinner-icon {
+    animation: spin 1s linear infinite;
+  }
+
+  &.loading {
+    pointer-events: none;
+    opacity: 0.7; /* Dim the button when loading */
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

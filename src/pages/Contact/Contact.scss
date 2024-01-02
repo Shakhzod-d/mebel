@@ -1,0 +1,57 @@
+// ContactUs.scss
+.contact-us {
+  //   height: 100vh;
+  text-align: center;
+
+  padding: 6rem;
+
+  h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+
+    .icon {
+      font-size: 2em;
+      margin: 0 10px;
+      color: #333;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #007bff; // Change to your preferred hover color
+      }
+
+      &.facebook:hover {
+        color: #3b5998;
+      }
+
+      &.twitter:hover {
+        color: #1da1f2;
+      }
+
+      &.instagram:hover {
+        color: #e4405f;
+      }
+
+      &.linkedin:hover {
+        color: #0077b5;
+      }
+
+      &.github:hover {
+        color: #333;
+      }
+
+      &.telegram:hover {
+        color: #0088cc; // Change to your preferred hover color
+      }
+    }
+  }
+}

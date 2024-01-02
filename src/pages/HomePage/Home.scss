@@ -1,0 +1,29 @@
+.container {
+  padding: 1rem 5rem;
+
+  display: grid;
+  grid-template-columns: 3;
+}
+// Home.scss
+
+.home-container {
+}
+
+.search-and-sort-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // margin-bottom: 20px;
+
+  padding-top: 6rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
+  padding-bottom: 0;
+
+  .search-input,
+  .sorting-selector {
+    // flex: 1;
+    // width: 100%;
+    // margin-right: 10px;
+  }
+}
