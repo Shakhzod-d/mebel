@@ -7,10 +7,12 @@ import "./Cart.scss";
 import Card from "../../components/Card/Card";
 import StyledTaskList from "../../components/Card/StyledTaskList";
 import { FakeTaskData } from "./helper";
+import { useTranslation } from "react-i18next";
 
 const Cart = () => {
   const dispatch = useAppDispatch();
   const { items = [], loading = false } = useAppSelector(itemsSelector);
+  const { t } = useTranslation();
 
   const totalSum =
     Array.isArray(items) &&
@@ -45,11 +47,11 @@ const Cart = () => {
       </div>
 
       <div className="total-sum-container">
-        <h3>Total Sum:</h3>
+        <h3>{t("cartPage.totalSum")}:</h3>
         <p className="total-sum">${totalSum}</p>
       </div>
       <div className="total-sum-container">
-        <h3>Total items:</h3>
+        <h3>{t("cartPage.totalItems")}:</h3>
         <p className="total-sum">{Array.isArray(items) && items?.length}</p>
       </div>
     </div>

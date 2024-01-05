@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import "./SearchInput.scss";
+import { useTranslation } from "react-i18next";
 
 interface SearchInputProps {
   inputValue: string;
@@ -11,6 +12,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   setInputValue,
 }) => {
   // const [searchTerm, setSearchTerm] = useState<string>("");
+  const { t } = useTranslation();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -20,7 +22,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
     <div className="search-input">
       <input
         type="text"
-        placeholder="Search..."
+        placeholder={t("body.search")}
         value={inputValue}
         onChange={handleInputChange}
         className=""

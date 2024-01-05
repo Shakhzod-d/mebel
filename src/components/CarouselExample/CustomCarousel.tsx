@@ -4,9 +4,11 @@ import { ICustomCarouselProps } from "./types";
 
 import { FaChevronCircleRight } from "react-icons/fa";
 import { FaChevronCircleLeft } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const CustomCarousel = ({ slides = [] }: ICustomCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { t } = useTranslation();
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
@@ -36,9 +38,7 @@ const CustomCarousel = ({ slides = [] }: ICustomCarouselProps) => {
 
   return (
     <div className="custom-carousel-container">
-      <h2>
-        The best mebel in the world, watch and order your first furniture{" "}
-      </h2>
+      <h2>{t("body.theBestMebelInTheWorldWatchAndOrderYourFirstFurniture")}</h2>
       <div className="carousel-outer-wrapper">
         <FaChevronCircleLeft
           className="carousel-button prev"

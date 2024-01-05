@@ -11,6 +11,7 @@ import SearchInput from "../../components/SearchInput/SearchInput";
 import useDebounce from "../../hooks/useDebounce";
 import Pagination from "../../components/Pagination/Pagination";
 import CarouselExample from "../../components/CarouselExample/CustomCarousel";
+import { useTranslation } from "react-i18next";
 
 export interface Slide {
   id: number;
@@ -25,6 +26,7 @@ const Home = () => {
   const [currentPage, setcurrentPage] = useState<number>(1);
   const debouncedInputValue = useDebounce<string>(inputValue, 800);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   // console.log(items?.meta?.total_pages);
 
@@ -154,9 +156,10 @@ const Home = () => {
         <SearchInput inputValue={inputValue} setInputValue={setInputValue} />
         <SortingSelector
           onSelect={handleSortingSelect}
-          options={sortingOptions}
+          options={sortingOptions(t)}
         />
       </div>
+      <h1>{t("greeting")}</h1>
       <div className="container">
         <MebelGrid
           mebels={items.hasOwnProperty("items") ? items?.items : []}

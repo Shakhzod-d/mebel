@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 
 import "./SortingSelector.scss";
+import { useTranslation } from "react-i18next";
 
 interface IOptionObj {
   value: string;
@@ -18,7 +19,8 @@ const SortingSelector: React.FC<SortingSelectorProps> = ({
   onSelect,
   options,
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string>(""); // Initially, no option is selected
+  const [selectedOption, setSelectedOption] = useState<string>("");
+  const { t } = useTranslation();
 
   const handleSelectionChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -31,7 +33,7 @@ const SortingSelector: React.FC<SortingSelectorProps> = ({
   return (
     <div className="sorting-selector">
       <label>
-        Sorting Order:
+        {t("body.sortingOrder")}
         <select value={selectedOption} onChange={handleSelectionChange}>
           {options.map((item: IOptionObj, idx) => {
             return (

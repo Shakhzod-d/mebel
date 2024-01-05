@@ -1,0 +1,45 @@
+{
+  "greeting": "你好，世界！",
+  "navbar": {
+    "yourLogo": "你的标志",
+    "home": "家",
+    "favorites": "收藏夹",
+    "cart": "大车",
+    "contact": "接触",
+    "createNewMebel": "创建新梅贝尔",
+    "account": "帐户",
+    "english": "英语",
+    "uzbek": "乌兹别克语",
+    "chinese": "中国人"
+  },
+  "body": {
+    "search": "搜索",
+    "sortingOrder": "排序顺序",
+    "ascendingOrder": "升序",
+    "descendingOrder": "降序",
+    "theBestMebelInTheWorldWatchAndOrderYourFirstFurniture": "世界上最好的梅贝尔，观看并订购您的第一件家具"
+  },
+  "cartPage": {
+    "totalSum": "总和",
+    "totalItems": "总项目"
+  },
+  "contactPage": {
+    "contactUsViaTelegramForAnySupport": "如需任何支持，请通过电报联系我们",
+    "feelFreeToReachOutToUsOnSocialMedia": "请随时在社交媒体上与我们联系！"
+  },
+  "newMebelPage": {
+    "title": "标题",
+    "info": "信息",
+    "image": "图像：",
+    "price": "价格",
+    "submit": "提交",
+    "titleIsRequired": "标题为必填项",
+    "infoIsRequired": "信息为必填项",
+    "imageIsRequired": "图片为必填项",
+    "priceMustBePositive": "价格必须为正",
+    "priceIsRequired": "价格为必填项"
+  },
+  "account": {
+    "weAreWorkingOnThisPage": "我们正在处理此页面"
+  }
+}

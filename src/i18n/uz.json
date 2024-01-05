@@ -1,0 +1,45 @@
+{
+  "greeting": "Salom, Dunyo!",
+  "navbar": {
+    "yourLogo": "Sizning logotipingiz",
+    "home": "Home",
+    "favorites": "Sevimlilar",
+    "cart": "Savatcha",
+    "contact": "Aloqa",
+    "createNewMebel": "Yangi mebel yarating",
+    "account": "Hisob",
+    "english": "Ingliz tili",
+    "uzbek": "O'zbek tili",
+    "chinese": "Xitoy tili"
+  },
+  "body": {
+    "search": "Qidirmoq",
+    "sortingOrder": "Saralash tartibi",
+    "ascendingOrder": "O'sish tartibi",
+    "descendingOrder": "Kamayish tartibi",
+    "theBestMebelInTheWorldWatchAndOrderYourFirstFurniture": "Dunyodagi eng yaxshi mebel, birinchi mebelingizni tomosha qiling va buyurtma bering"
+  },
+  "cartPage": {
+    "totalSum": "Jami summa",
+    "totalItems": "Jami elementlar"
+  },
+  "contactPage": {
+    "contactUsViaTelegramForAnySupport": "Har qanday yordam uchun telegram orqali biz bilan bog'laning",
+    "feelFreeToReachOutToUsOnSocialMedia": "Ijtimoiy tarmoqlar orqali biz bilan bog'laning!"
+  },
+  "newMebelPage": {
+    "title": "Sarlavha",
+    "info": "Ma'lumot",
+    "image": "Rasm:",
+    "price": "Narxi",
+    "submit": "Yuborish",
+    "titleIsRequired": "Sarlavha talab qilinadi",
+    "infoIsRequired": "Ma'lumot talab qilinadi",
+    "imageIsRequired": "Rasm talab qilinadi",
+    "priceMustBePositive": "Narx ijobiy bo'lishi kerak",
+    "priceIsRequired": "Narx talab qilinadi"
+  },
+  "account": {
+    "weAreWorkingOnThisPage": "Biz ushbu sahifa ustida ishlayapmiz"
+  }
+}

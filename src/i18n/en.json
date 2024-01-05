@@ -1,0 +1,45 @@
+{
+  "greeting": "Hello, World!",
+  "navbar": {
+    "yourLogo": "YourLogo",
+    "home": "Home",
+    "favorites": "Favorites",
+    "cart": "Cart",
+    "contact": "Contact",
+    "createNewMebel": "Create new mebel",
+    "account": "Account",
+    "english": "English",
+    "uzbek": "Uzbek",
+    "chinese": "Chinese"
+  },
+  "body": {
+    "search": "Search",
+    "sortingOrder": "Sorting Order",
+    "ascendingOrder": "Ascending Order",
+    "descendingOrder": "Descending Order",
+    "theBestMebelInTheWorldWatchAndOrderYourFirstFurniture": "The best mebel in the world, watch and order your first furniture"
+  },
+  "cartPage": {
+    "totalSum": "Total Sum",
+    "totalItems": "Total items"
+  },
+  "contactPage": {
+    "contactUsViaTelegramForAnySupport": "Contact Us via telegram for any support",
+    "feelFreeToReachOutToUsOnSocialMedia": "Feel free to reach out to us on social media!"
+  },
+  "newMebelPage": {
+    "title": "Title",
+    "info": "Info",
+    "image": "Image:",
+    "price": "Price",
+    "submit": "Submit",
+    "titleIsRequired": "Title is required",
+    "infoIsRequired": "Info is required",
+    "imageIsRequired": "Image is required",
+    "priceMustBePositive": "Price must be positive",
+    "priceIsRequired": "Price is required"
+  },
+  "account": {
+    "weAreWorkingOnThisPage": "We are working on this page"
+  }
+}

@@ -1,4 +1,6 @@
-export const sortingOptions = [
-  { value: "price", title: "Ascending Order" },
-  { value: "-price", title: "Descending Order" },
+import { TFunction } from "i18next";
+
+export const sortingOptions = (t: TFunction<"translation">) => [
+  { value: "price", title: t("body.ascendingOrder") },
+  { value: "-price", title: t("body.descendingOrder") },
 ];

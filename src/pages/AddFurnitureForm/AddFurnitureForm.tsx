@@ -8,6 +8,7 @@ import { createNewMebel, itemsSelector } from "../../store/mebelsSlice";
 import { MAIN_URL } from "../../api";
 import axios from "axios";
 import Notification from "../../components/Notification/Notification";
+import { useTranslation } from "react-i18next";
 
 interface MebelFormProps {
   //   onSubmit: (formData: MebelFormData) => void;
@@ -24,6 +25,7 @@ const MebelForm: React.FC<MebelFormProps> = () => {
   const { mebelDetails, loading, ok, message } = useAppSelector(itemsSelector);
 
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const formik = useFormik<MebelFormData>({
     initialValues: {
@@ -33,12 +35,12 @@ const MebelForm: React.FC<MebelFormProps> = () => {
       price: 0,
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Title is required"),
-      info: Yup.string().required("Info is required"),
-      file: Yup.mixed().required("Image is required"),
+      name: Yup.string().required(t("newMebelPage.titleIsRequired")),
+      info: Yup.string().required(t("newMebelPage.infoIsRequired")),
+      file: Yup.mixed().required(t("newMebelPage.imageIsRequired")),
       price: Yup.number()
-        .required("Price is required")
-        .positive("Price must be positive"),
+        .required(t("newMebelPage.priceIsRequired"))
+        .positive(t("newMebelPage.priceMustBePositive")),
     }),
     onSubmit: (values: MebelFormData, { resetForm }) => {
       const formData: FormData = objectToFormData(values);
@@ -75,7 +77,7 @@ const MebelForm: React.FC<MebelFormProps> = () => {
         <Notification message={message} type={"success"} onClose={() => {}} />
       )}
       <label>
-        Title:
+        {t("newMebelPage.title")}:
         <input
           type="text"
           name="name"
@@ -89,7 +91,7 @@ const MebelForm: React.FC<MebelFormProps> = () => {
       </label>
 
       <label>
-        Info:
+        {t("newMebelPage.info")}:
         <textarea
           name="info"
           value={formik.values.info}
@@ -102,7 +104,7 @@ const MebelForm: React.FC<MebelFormProps> = () => {
       </label>
 
       <label>
-        Image:
+        {t("newMebelPage.image")}:
         <input
           type="file"
           accept="image/*"
@@ -120,7 +122,7 @@ const MebelForm: React.FC<MebelFormProps> = () => {
       </label>
 
       <label>
-        Price:
+        {t("newMebelPage.price")}:
         <input
           type="number"
           name="price"
@@ -133,7 +135,7 @@ const MebelForm: React.FC<MebelFormProps> = () => {
         )}
       </label>
 
-      <button type="submit">Submit</button>
+      <button type="submit">{t("newMebelPage.submit")}</button>
     </form>
   );
 };
