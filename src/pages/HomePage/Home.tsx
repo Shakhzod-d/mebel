@@ -134,7 +134,6 @@ const Home = () => {
 
   const handleSortingSelect = (selectedOption: string) => {
     setSortBy(selectedOption);
-    // console.log("Selected Sorting Option:", selectedOption);
   };
 
   useEffect(() => {
@@ -148,7 +147,6 @@ const Home = () => {
 
     dispatch(fetchItems(paramsObject));
   }, [debouncedInputValue, sortBy, currentPage]);
-  // console.log(items.hasOwnProperty("items"));
 
   return (
     <div className="home-container">
@@ -159,7 +157,7 @@ const Home = () => {
           options={sortingOptions(t)}
         />
       </div>
-      <h1>{t("greeting")}</h1>
+      {/* <h1>{t("greeting")}</h1> */}
       <div className="container">
         <MebelGrid
           mebels={items.hasOwnProperty("items") ? items?.items : []}
