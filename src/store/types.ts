@@ -1,10 +1,12 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface IAddFavoriteObj {
   id: number;
-  name: string;
+  title: string;
   imageUrl: string;
   info: string;
   price: number;
-  setIsAddFavorite: () => void;
+  setIsFavorite: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface IDeleteItemObj {
@@ -14,9 +16,19 @@ export interface IDeleteItemObj {
 
 export interface ICartItem {
   id: number;
-  name: string;
+  title: string;
   imageUrl: string;
   info: string;
   price: number;
   handleStopLoading: () => void;
 }
+
+export interface ISearch {
+  title?: string;
+  pathname?: string;
+  sortBy?: string;
+  page?: number;
+  limit?: number;
+}
+
+export type UrlParams = { title: string; sortBy: string; page: number };

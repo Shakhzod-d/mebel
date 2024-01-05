@@ -4,19 +4,53 @@ import { fetchItems, itemsSelector } from "../../store/mebelsSlice";
 import MebelGrid from "../../components/MebelGrid/MebelGrid";
 
 import "./Cart.scss";
+import Card from "../../components/Card/Card";
+import StyledTaskList from "../../components/Card/StyledTaskList";
+import { FakeTaskData } from "./helper";
 
 const Cart = () => {
   const dispatch = useAppDispatch();
   const { items = [], loading = false } = useAppSelector(itemsSelector);
 
+  const totalSum =
+    Array.isArray(items) &&
+    items?.reduce((acc: number, obj: any) => acc + obj.price, 0);
+  // console.log(items.hasOwnProperty("items"));
+
+  const handleDelete = () => {
+    // Implement delete functionality
+    console.log("Item deleted");
+  };
+
   useEffect(() => {
-    dispatch(fetchItems());
+    dispatch(
+      fetchItems({
+        pathname: `cart`,
+      })
+    );
   }, []);
 
   return (
-    <div>
-      <div className="container">
-        <MebelGrid mebels={items} loading={loading} />
+    <div style={{ padding: "7rem 0" }}>
+      {/* <ToggleableList items={[]} /> */}
+      <div className="cart_container">
+        {loading &&
+          FakeTaskData.map((item) => <StyledTaskList key={item.id} />)}
+
+        {Array.isArray(items) &&
+          items?.map((item: any) => (
+            <Card key={item.id} {...item} onDelete={handleDelete} />
+          ))}
+        {/* <MebelGrid mebels={items?.items} loading={loading} /> */}
+      </div>
+
+      <div className="total-sum-container">
+        <h3>Total Sum:</h3>
+        <p className="total-sum">${totalSum}</p>
+      </div>
+      <div className="total-sum-container">
+        <h3>Total items:</h3>
+        <p className="total-sum">{Array.isArray(items) && items?.length}</p>
       </div>
     </div>
   );

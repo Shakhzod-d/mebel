@@ -6,14 +6,14 @@ import "./MebelGrid.scss";
 import DevtoCard from "../ContentLoader/ContentLoader";
 
 interface MebelGridProps {
-  mebels: IMebel[]; // Assuming you have an array of Mebel items
+  mebels: IMebel[] | any[]; // Assuming you have an array of Mebel items
   loading: boolean;
 }
 
-const MebelGrid: React.FC<MebelGridProps> = ({ mebels, loading }) => (
+const MebelGrid: React.FC<MebelGridProps> = ({ mebels = [], loading }) => (
   <div className="mebel-grid">
     {!loading &&
-      mebels.map((mebel) => <MebelCard key={mebel.id} mebel={mebel} />)}
+      mebels?.map((mebel) => <MebelCard key={mebel.id} mebel={mebel} />)}
 
     {loading &&
       new Array(8)

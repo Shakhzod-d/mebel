@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "../../components/Carousel/Carousel";
 import ReusableCarousel from "../../components/Carousel/Carousel";
 import MebelGrid from "../../components/MebelGrid/MebelGrid";
@@ -8,6 +8,9 @@ import { fetchItems, itemsSelector } from "../../store/mebelsSlice";
 import SortingSelector from "../../components/SortingSelector/SortingSelector";
 import { sortingOptions } from "./helper";
 import SearchInput from "../../components/SearchInput/SearchInput";
+import useDebounce from "../../hooks/useDebounce";
+import Pagination from "../../components/Pagination/Pagination";
+import CarouselExample from "../../components/CarouselExample/CustomCarousel";
 
 export interface Slide {
   id: number;
@@ -17,9 +20,13 @@ export interface Slide {
 const Home = () => {
   // const selectedUsers = useAppSelector(userSelector);
   const { items = [], loading = false } = useAppSelector(itemsSelector);
+  const [inputValue, setInputValue] = useState<string>("");
+  const [sortBy, setSortBy] = useState<string>("price");
+  const [currentPage, setcurrentPage] = useState<number>(1);
+  const debouncedInputValue = useDebounce<string>(inputValue, 800);
   const dispatch = useAppDispatch();
 
-  // console.log(items);
+  // console.log(items?.meta?.total_pages);
 
   const mebels = [
     {
@@ -124,32 +131,50 @@ const Home = () => {
   ];
 
   const handleSortingSelect = (selectedOption: string) => {
-    // Handle the selected sorting option
-    console.log("Selected Sorting Option:", selectedOption);
-  };
-
-  const handleSearch = (searchTerm: string) => {
-    // Handle the search logic
-    console.log("Search Term:", searchTerm);
-    // You can perform search-related actions here
+    setSortBy(selectedOption);
+    // console.log("Selected Sorting Option:", selectedOption);
   };
 
   useEffect(() => {
-    dispatch(fetchItems());
-  }, []);
+    const paramsObject = {
+      title: debouncedInputValue,
+      pathname: `home`,
+      sortBy,
+      page: currentPage,
+      limit: 8,
+    };
+
+    dispatch(fetchItems(paramsObject));
+  }, [debouncedInputValue, sortBy, currentPage]);
+  // console.log(items.hasOwnProperty("items"));
 
   return (
     <div className="home-container">
       <div className="search-and-sort-container">
-        <SearchInput onSearch={handleSearch} />
+        <SearchInput inputValue={inputValue} setInputValue={setInputValue} />
         <SortingSelector
           onSelect={handleSortingSelect}
           options={sortingOptions}
         />
       </div>
       <div className="container">
-        <MebelGrid mebels={items} loading={loading} />
+        <MebelGrid
+          mebels={items.hasOwnProperty("items") ? items?.items : []}
+          loading={loading}
+        />
       </div>
+      <Pagination
+        totalPages={items?.meta?.total_pages || 2}
+        setcurrentPage={setcurrentPage}
+      />
+
+      <CarouselExample
+        slides={
+          items.hasOwnProperty("items")
+            ? items.items.map((item: any) => item.imageUrl)
+            : []
+        }
+      />
     </div>
   );
 };

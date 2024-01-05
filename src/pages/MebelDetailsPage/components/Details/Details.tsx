@@ -33,10 +33,13 @@ const Details = ({ mebelDetails }: IDetailsProps) => {
     }
   };
 
+  console.log(`mebelDetails.isLiked`, mebelDetails.isLiked);
+
   const addItemFavoriteList = () => {
     const obj = {
-      setIsAddFavorite: () => setIsFavorite(true),
+      setIsFavorite: setIsFavorite,
       ...mebelDetails,
+      isLiked: true,
     };
 
     dispatch(postMebelToFavorite(obj));
@@ -63,7 +66,7 @@ const Details = ({ mebelDetails }: IDetailsProps) => {
           className="furniture-image"
         />
         <div className="details">
-          <h2>{mebelDetails.name}</h2>
+          <h2>{mebelDetails.title}</h2>
           <p>Price: ${price}</p>
           <div className="counter">
             <button
@@ -83,11 +86,11 @@ const Details = ({ mebelDetails }: IDetailsProps) => {
           <AiFillHeart
             onClick={addItemFavoriteList}
             size={22}
-            color={isFavorite ? "red" : ""}
+            color={mebelDetails.isLiked ? "red" : ""}
             className={isFavorite ? "favorite-btn active" : "favorite-btn"}
           />
 
-          <AddToCartButton currentItem={mebelDetails} />
+          <AddToCartButton currentItem={{ ...mebelDetails, count }} />
         </div>
       </div>
     </div>

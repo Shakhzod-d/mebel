@@ -76,6 +76,21 @@ const App: React.FC = () => {
               </Suspense>
             }
           />
+
+          <Route
+            path="/account"
+            element={
+              <Suspense fallback={<h2>loading</h2>}>
+                <div
+                  style={{ height: "100vh", width: "100%", padding: "7rem" }}
+                >
+                  <h3 style={{ color: "black", margin: "8rem" }}>
+                    We are working on this page
+                  </h3>
+                </div>
+              </Suspense>
+            }
+          />
           {/* <Route
         path="/create-mebel"
         element={

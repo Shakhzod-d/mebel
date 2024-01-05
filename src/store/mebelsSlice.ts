@@ -2,20 +2,40 @@ import React from "react";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { MAIN_URL, favoriteUrl, mebelListUrl } from "../api";
 import { RootState } from "./store";
-import { IAddFavoriteObj, ICartItem, IDeleteItemObj } from "./types";
+import {
+  IAddFavoriteObj,
+  ICartItem,
+  IDeleteItemObj,
+  ISearch,
+  UrlParams,
+} from "./types";
 
 export interface Item {
   id: number;
-  name: string;
+  title: string;
   imageUrl: string;
   info: string;
   price: number;
   isLiked: boolean;
+  count?: number;
   // Add other properties as needed
 }
 
-interface ItemsState {
+interface IMeta {
+  current_page?: number;
+  per_page?: number;
+  remaining_count?: number;
+  total_items?: number;
+  total_pages?: number;
+}
+
+interface ItemsObj {
   items: Item[];
+  meta: IMeta;
+}
+
+interface ItemsState {
+  items: ItemsObj | any;
   loading: boolean;
   message: "Successfully created" | "Somwthing went wrong" | "";
   ok: boolean;
@@ -24,14 +44,14 @@ interface ItemsState {
 }
 
 const initialState: ItemsState = {
-  items: [],
+  items: { items: [], meta: {} },
   loading: false,
   ok: false,
   message: "",
   error: null,
   mebelDetails: {
     id: 0,
-    name: "",
+    title: "",
     imageUrl: "",
     info: "",
     price: 0,
@@ -39,16 +59,41 @@ const initialState: ItemsState = {
   },
 };
 
-export const fetchItems = createAsyncThunk("items/fetchItems", async () => {
-  try {
-    const response = await fetch(mebelListUrl);
-    const data = await response.json();
+export const fetchItems = createAsyncThunk(
+  "items/fetchItems",
+  async ({
+    title = "",
+    pathname = "home",
+    sortBy = "",
+    page = 1,
+    limit = 8,
+  }: ISearch) => {
+    const queryParams = new URLSearchParams({
+      title: `*${title}*`,
+      sortBy,
+      page: page.toString(),
+      limit: limit.toString(),
+    }).toString();
 
-    return data as Item[];
-  } catch (error) {
-    throw error;
+    const urlObj: Record<string, string> = {
+      home: `${mebelListUrl}?${queryParams}`,
+      cart: `${MAIN_URL}cart`,
+      favorite: `${MAIN_URL}favorite`,
+    };
+
+    // console.log(urlObj[pathname]);
+    const apiUrl = urlObj[pathname];
+
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      throw error;
+    }
   }
-});
+);
 
 export const fetchMebelById = createAsyncThunk(
   "mebelDetails/fetchMebelById",
@@ -65,19 +110,22 @@ export const fetchMebelById = createAsyncThunk(
 export const postMebelToFavorite = createAsyncThunk(
   "favorite/postMebelToFavorite",
   async (obj: IAddFavoriteObj) => {
-    const { setIsAddFavorite, ...rest } = obj;
+    const { setIsFavorite, ...rest } = obj;
 
     try {
       const response = await fetch(favoriteUrl, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(rest),
       });
       const data = await response.json();
 
-      // console.log(`response`, response);
+      console.log(`response`, response);
 
       if (response.ok) {
-        setIsAddFavorite();
+        setIsFavorite(true);
       }
 
       return data as Item[];
@@ -99,7 +147,7 @@ export const deleteItem = createAsyncThunk(
       });
       const data = await response.json();
 
-      console.log(`response`, response);
+      // console.log(`response`, response);
 
       if (response.status === 404) {
         // shu  statusText ni alert ga chiqarish lozim
@@ -193,16 +241,18 @@ const mebelsSlice = createSlice({
     builder.addCase(fetchItems.pending, (state) => {
       state.loading = true;
     });
+    // @ts-ignore
     builder.addCase(
       fetchItems.fulfilled,
-      (state, action: PayloadAction<Array<Item>>) => {
+      (state, action: PayloadAction<ItemsObj>) => {
+        // console.log(action.payload);
         state.loading = false;
         state.items = action.payload;
       }
     );
     builder.addCase(fetchItems.rejected, (state, action) => {
       state.loading = false;
-      state.items = [];
+      state.items = { items: [], meta: {} };
       state.error = action.error as string;
     });
 
@@ -220,7 +270,7 @@ const mebelsSlice = createSlice({
       state.loading = false;
       state.mebelDetails = {
         id: 0,
-        name: "",
+        title: "",
         imageUrl: "",
         info: "",
         price: 0,

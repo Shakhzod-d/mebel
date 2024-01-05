@@ -33,9 +33,6 @@ const SortingSelector: React.FC<SortingSelectorProps> = ({
       <label>
         Sorting Order:
         <select value={selectedOption} onChange={handleSelectionChange}>
-          <option value="" disabled>
-            Select an option
-          </option>
           {options.map((item: IOptionObj, idx) => {
             return (
               <option key={item.value + idx} value={item.value}>

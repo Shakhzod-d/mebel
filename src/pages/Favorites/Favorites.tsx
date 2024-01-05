@@ -7,16 +7,23 @@ import "./Favorites.scss";
 
 const Favorites = () => {
   const dispatch = useAppDispatch();
-  const { items = [], loading = false } = useAppSelector(itemsSelector);
+  const { items = { items: [], meta: {} }, loading = false } =
+    useAppSelector(itemsSelector);
+  console.log(`items`, items);
 
   useEffect(() => {
-    dispatch(fetchItems());
+    dispatch(
+      fetchItems({
+        pathname: `favorite`,
+      })
+    );
   }, []);
 
   return (
     <div>
       <div className="container">
-        <MebelGrid mebels={items} loading={loading} />
+        {Array.isArray(items) && items?.length === 0 && "No favorite items yet"}
+        {Array.isArray(items) && <MebelGrid mebels={items} loading={loading} />}
       </div>
     </div>
   );

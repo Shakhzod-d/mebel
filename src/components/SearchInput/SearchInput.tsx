@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import "./SearchInput.scss";
 
 interface SearchInputProps {
-  onSearch: (searchTerm: string) => void;
+  inputValue: string;
+  setInputValue: Dispatch<SetStateAction<string>>;
 }
 
-const SearchInput: React.FC<SearchInputProps> = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
+const SearchInput: React.FC<SearchInputProps> = ({
+  inputValue,
+  setInputValue,
+}) => {
+  // const [searchTerm, setSearchTerm] = useState<string>("");
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const handleSearch = () => {
-    onSearch(searchTerm);
+    setInputValue(event.target.value);
   };
 
   return (
@@ -21,7 +21,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ onSearch }) => {
       <input
         type="text"
         placeholder="Search..."
-        value={searchTerm}
+        value={inputValue}
         onChange={handleInputChange}
         className=""
       />
